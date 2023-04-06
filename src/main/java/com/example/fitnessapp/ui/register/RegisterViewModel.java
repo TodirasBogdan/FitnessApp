@@ -19,8 +19,12 @@ public class RegisterViewModel extends ViewModel {
     private MutableLiveData<RegisterResult> registerResult = new MutableLiveData<>();
     private RegisterRepository registerRepository;
 
-    RegisterViewModel(RegisterRepository registerRepository) {
+    public RegisterViewModel(RegisterRepository registerRepository) {
         this.registerRepository = registerRepository;
+    }
+
+    public RegisterViewModel() {
+
     }
 
     LiveData<RegisterFormState> getRegisterFormState() {
@@ -60,12 +64,13 @@ public class RegisterViewModel extends ViewModel {
     }
 
     // A placeholder username validation check
-    private boolean isUserNameValid(String username) {
+    public boolean isUserNameValid(String username) {
         if (username == null) {
             return false;
         }
         if (username.contains("@")) {
-            return Patterns.EMAIL_ADDRESS.matcher(username).matches();
+            String emailRegex = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
+            return username.matches(emailRegex) && (username.length() > 5 && username.length() < 50);
         }
         return false;
     }
