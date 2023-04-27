@@ -51,8 +51,36 @@ import java.util.Collection;
             assertTrue(validator.isUserNameValid("u@a.ro")); //6
             assertTrue(validator.isUserNameValid("uu@a.ro")); //7
 
-            assertTrue(validator.isUserNameValid("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@a.ro")); //49
-            assertFalse(validator.isUserNameValid("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@a.ro")); //50
-            assertFalse(validator.isUserNameValid("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@a.ro")); //51
+            assertTrue(validator.isUserNameValid("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@a.ro")); //48
+            assertFalse(validator.isUserNameValid("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@a.ro")); //49
+            assertFalse(validator.isUserNameValid("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@a.ro")); //50
+        }
+
+        @Test
+        public void countCalories() {
+            String[] foods1 ={};
+            int expected = 0;
+            int actual = RegisterViewModel.countCalories(foods1);
+            assertEquals(expected, actual);
+
+            String[] foods2 = {"apple", "banana", "orange"};
+            int expected2 = 262;
+            int actual2 = RegisterViewModel.countCalories(foods2);
+            assertEquals(expected2, actual2);
+
+            String[] foods3 = {"banana"};
+            int expected3 = 105;
+            int actual3 = RegisterViewModel.countCalories(foods3);
+            assertEquals(expected3, actual3);
+
+            String[] foods4 = {"banana", "apple"};
+            int expected4 = 200;
+            int actual4 = RegisterViewModel.countCalories(foods4);
+            assertEquals(expected4, actual4);
+
+            String[] foods5 = {"carrot", "lettuce", "spinach"};
+            int expected5 = 0;
+            int actual5 = RegisterViewModel.countCalories(foods5);
+            assertEquals(expected5, actual5);
         }
     }
